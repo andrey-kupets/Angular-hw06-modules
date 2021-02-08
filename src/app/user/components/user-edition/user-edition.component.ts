@@ -3,6 +3,7 @@ import {User} from '../../models/User';
 import {FormBuilder, FormControl, FormGroup, FormsModule} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
+import {SubjectUserService} from '../../services/subject-user.service';
 
 @Component({
   selector: 'app-user-edition',
@@ -19,7 +20,8 @@ export class UserEditionComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private userService: UserService,
               private formsModule: FormsModule,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private subjectUserService: SubjectUserService) {
 
     // this.activatedRoute.params.subscribe(value => {
     //   this.userId = +value.id;
@@ -46,6 +48,8 @@ export class UserEditionComponent implements OnInit {
       email: new FormControl(this.user.email),
       city: new FormControl(this.user.address.city),
       street: new FormControl(this.user.address.street),
+      suite: new FormControl(this.user.address.suite),
+      zipcode: new FormControl(this.user.address.zipcode),
       latitude: new FormControl(this.user.address.geo.lat),
       longitude: new FormControl(this.user.address.geo.lng),
       phone: new FormControl(this.user.phone),
@@ -54,6 +58,11 @@ export class UserEditionComponent implements OnInit {
       catchPhrase: new FormControl(this.user.company.catchPhrase),
       bs: new FormControl(this.user.company.bs),
     });
+  }
+
+  saveForm(userEditionForm): void {
+    this.subjectUserService.setNewUserContext(userEditionForm.value);
+    this.router.navigate(['users', this.user.id]);
   }
 
 }

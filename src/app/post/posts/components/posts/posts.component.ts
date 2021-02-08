@@ -20,10 +20,11 @@ export class PostsComponent implements OnInit {
     this.subjectService.getNewPostContext().subscribe(editedPost => {
       if (editedPost) {
 
-      const arr = this.posts.filter(({id}) => editedPost.id !== id);
-      arr.push(editedPost);
-      arr.sort((a, b) => a.id - b.id);
-      this.posts = arr;
+      // const updatedPosts = this.posts.filter(({id}) => editedPost.id !== id);
+      // updatedPosts.push(editedPost);
+      // updatedPosts.sort((a, b) => a.id - b.id);
+        this.posts.filter(({id}) => editedPost.id !== id).push(editedPost);
+        this.posts.sort((a, b) => a.id - b.id);
       }
     });
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../models/User';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../services/user.service';
+import {SubjectUserService} from '../../services/subject-user.service';
 
 @Component({
   selector: 'app-full-user',
@@ -13,7 +14,10 @@ export class FullUserComponent implements OnInit {
   user: User;
   userId: number;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService) {
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private userService: UserService,
+              private subjectUserService: SubjectUserService) {
     this.activatedRoute.params.subscribe(value => {
       this.userId = +value.id;
       console.log(value);
@@ -27,6 +31,7 @@ export class FullUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subjectUserService.getNewUserContext().subscribe( editedUser => editedUser ? this.user = editedUser : null)
   }
 
   goTo(): void {

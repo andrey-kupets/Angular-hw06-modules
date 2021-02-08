@@ -1,7 +1,7 @@
 <div >
   <hr>
   <h1>edit user {{user.id}}</h1>
-  <form [formGroup]="userEditionForm">
+  <form [formGroup]="userEditionForm" (ngSubmit)="saveForm(userEditionForm)">
     <label>Change User Name:
       <input type="text" formControlName="name">
     </label>
@@ -22,12 +22,20 @@
       <input type="text" formControlName="street">
     </label>
     <br>
+    <label>Change User Address-Suite:
+      <input type="text" formControlName="suite">
+    </label>
+    <br>
+    <label>Change User Address-Zipcode:
+      <input type="text" formControlName="zipcode">
+    </label>
+    <br>
     <label>Change User Address-Geo/Lat:
-      <input type="number" formControlName="latitude">
+      <input type="text" formControlName="latitude">
     </label>
     <br>
     <label>Change User Address-Geo/Lng:
-      <input type="number" formControlName="longitude">
+      <input type="text" formControlName="longitude">
     </label>
     <br>
     <label>Change User Phone:
