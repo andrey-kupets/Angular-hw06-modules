@@ -29,4 +29,8 @@ export class FullUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  goTo(): void {
+    this.router.navigate(['edit'], {relativeTo: this.activatedRoute, state: this.user});
+  }
+
 }

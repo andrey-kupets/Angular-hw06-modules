@@ -21,17 +21,17 @@ export class UserEditionComponent implements OnInit {
               private formsModule: FormsModule,
               private formBuilder: FormBuilder) {
 
-    this.activatedRoute.params.subscribe(value => {
-      this.userId = +value.id;
-      console.log(value); // не видит его вообще??? - пустой объект
-      this.userService.getUserById(this.userId).subscribe(singleUser => this.user = singleUser);
-    });
+    // this.activatedRoute.params.subscribe(value => {
+    //   this.userId = +value.id;
+    //   console.log(value); // не видит его вообще??? - пустой объект
+    //   this.userService.getUserById(this.userId).subscribe(singleUser => this.user = singleUser);
+    // });
 
     // Также не работает второй способ:
-      // this.activatedRoute.params.subscribe(value => {
-      //   this.user = this.router.getCurrentNavigation().extras.state as User;
-      //   console.log(this.router.getCurrentNavigation());
-      // });
+      this.activatedRoute.params.subscribe(value => {
+        this.user = this.router.getCurrentNavigation().extras.state as User;
+        console.log(this.user);
+      });
   }
 
   ngOnInit(): void {
@@ -49,6 +49,7 @@ export class UserEditionComponent implements OnInit {
       latitude: new FormControl(this.user.address.geo.lat),
       longitude: new FormControl(this.user.address.geo.lng),
       phone: new FormControl(this.user.phone),
+      website: new FormControl(this.user.website),
       companyName: new FormControl(this.user.company.name),
       catchPhrase: new FormControl(this.user.company.catchPhrase),
       bs: new FormControl(this.user.company.bs),

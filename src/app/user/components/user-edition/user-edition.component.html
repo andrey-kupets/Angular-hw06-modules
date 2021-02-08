@@ -1,6 +1,6 @@
 <div >
   <hr>
-  <h1>edit user </h1>
+  <h1>edit user {{user.id}}</h1>
   <form [formGroup]="userEditionForm">
     <label>Change User Name:
       <input type="text" formControlName="name">
@@ -11,7 +11,7 @@
     </label>
     <br>
     <label>Change User Email:
-      <input type="text" formControlName="email">
+      <input type="email" formControlName="email">
     </label>
     <br>
     <label>Change User Address-City:
@@ -31,7 +31,7 @@
     </label>
     <br>
     <label>Change User Phone:
-      <input type="number" formControlName="phone">
+      <input type="text" formControlName="phone">
     </label>
     <br>
     <label>Change User Website:

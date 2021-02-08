@@ -2,10 +2,10 @@
   <hr>
   <h1>full user
     <button>
-      <a routerLink="edit">edit user</a>
+<!--      <a routerLink="edit">edit user</a>-->
+      <a (click)="goTo()">edit user</a>
     </button>
   </h1>
-  <hr>
   <p>{{user.id}} - {{user.name}}</p>
   <p>{{user.username}}</p>
   <p>{{user.email}}</p>
